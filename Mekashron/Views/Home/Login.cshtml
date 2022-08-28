@@ -1,0 +1,58 @@
+@model LoginVM
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <div class="m-sm-5 p-2 p-sm-5 border">
+        <form asp-controller="Home" asp-action="Login" method="post">
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" asp-for="UserName" name="UserName" placeholder="User Name">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">User Password</label>
+                <input type="password" class="form-control" id="exampleFormControlInput1" asp-for="Password" name="password" placeholder="User Password">
+            </div>
+            <div class="text-center">
+                <button class="btn btn-light">Submit</button>
+            </div>
+        </form>
+        @if (Model.Response != null)
+        {
+            if (Model.Response.ResultCode != 0 )
+            {
+                <div class="text-danger" style="overflow:auto">
+                    @Model.Response.ResultMessage
+                </div>
+            }
+            else
+            {
+                <div class="text-success">
+                    Successfully logged in
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        User Info
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">First Name: @(Model.Response.FirstName)</li>
+                        <li class="list-group-item">Last Name: @(Model.Response.LastName)</li>
+                        <li class="list-group-item">Email: @(Model.Response.Email)</li>
+                        <li class="list-group-item">Mobile: @(Model.Response.Mobile)</li>
+                        <li class="list-group-item">Phone: @(Model.Response.Phone)</li>
+                        <li class="list-group-item">Address: @(Model.Response.Address)</li>
+                        <li class="list-group-item">Company: @(Model.Response.Company)</li>
+                        <li class="list-group-item">Status: @(Model.Response.Status)</li>
+                        <li class="list-group-item">Lid: @(Model.Response.Lid)</li>
+                        <li class="list-group-item">Zip: @(Model.Response.Zip)</li>
+                        <li class="list-group-item">Country: @(Model.Response.Country)</li>
+                        <li class="list-group-item">MobileConfirm: @(Model.Response.MobileConfirm)</li>
+                    </ul>
+                </div>
+            }
+        }
+    </div>
+   
+</div>
+
